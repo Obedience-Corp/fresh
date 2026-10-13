@@ -5,11 +5,17 @@ if [ ! -f /.dockerenv ] || [ -e /first-use ] || [ -e /fixture ]; then
   echo "Run only in a fresh disposable Docker container." >&2
   exit 2
 fi
-for command in camp fest festival; do ! command -v "$command"; done
+for binary in camp fest festival; do
+  if command -v "$binary"; then
+    echo "Expected a container without Festival binaries." >&2
+    exit 2
+  fi
+done
 camp_bin=$(bash /fresh/skills/fresh/scripts/ensure-festival.sh)
 "$camp_bin" version
 "$(dirname "$camp_bin")/fest" version
-export PATH="$(dirname "$camp_bin"):$PATH"
+PATH="$(dirname "$camp_bin"):$PATH"
+export PATH
 export GIT_AUTHOR_NAME=fixture GIT_AUTHOR_EMAIL=fixture@example.invalid
 export GIT_COMMITTER_NAME=fixture GIT_COMMITTER_EMAIL=fixture@example.invalid
 export GIT_CONFIG_GLOBAL=/dev/null GIT_CONFIG_NOSYSTEM=1
@@ -37,7 +43,10 @@ test -d /root/campaigns/festival
 test "$(git branch --show-current)" = main
 test "$(git rev-parse main)" = "$(git rev-parse origin/main)"
 test -z "$(git status --porcelain)"
-! git show-ref --verify --quiet refs/heads/feat/landed
+if git show-ref --verify --quiet refs/heads/feat/landed; then
+  echo "Merged branch was not removed." >&2
+  exit 1
+fi
 python3 - <<'PY'
 import json
 from pathlib import Path
