@@ -1,137 +1,114 @@
-<p align="center">
-  <img src="docs/images/hero.png" width="880" alt="fresh. Tangled branches draw into one clean line. Your PR merged. Start clean. Merged branches and worktrees are gone. You are on the default branch, level with origin.">
-</p>
-
 # fresh
 
 **Your PR merged. Start clean.**
 
-The `fresh` skill gets you to one outcome: you are on the default branch, it matches the
-remote, and the branches and worktrees that already landed are gone.
+Fresh syncs your default branch and removes branches and worktrees whose changes
+already landed, including squash merges. Use it through Claude Code, Codex, Cursor,
+Grok, or OpenCode, or run `camp fresh` in your terminal.
+
+You see the cleanup plan first. Uncommitted changes stop the run, and branches
+with unmerged work are kept.
+
+[Install](#install) · [Watch setup](#configure-your-workflow) · [CLI reference](#cli-reference)
+
+## Configure your workflow
+
+With Festival installed, open the setup screen from your project:
+
+```bash
+camp fresh configure
+```
+
+It opens on your project's settings. Add an install step, a build, a dev server,
+or your own commands. Change branch settings and reorder steps from the same screen.
+
+![Recording of camp fresh configure: opening the project workflow, adding npm ci and npm run build through the forms, and saving both steps.](docs/demos/configure.gif)
+
+Use the arrow keys to navigate, **Enter** to edit, and **a** to add a command.
+Changes are saved from the form; configuration does not run cleanup.
+[Watch the MP4](docs/demos/configure.mp4) · [Still image](docs/demos/configured.png)
+
+The companion `fresh-configure` skill can do this for you, too:
+
+> Use fresh-configure. After cleanup, install dependencies and build this project.
+
+## After your next merge
+
+Ask your coding agent:
+
+> Use the fresh skill. My PR merged.
+
+Or preview and run it in your terminal:
+
+```bash
+camp fresh --dry-run
+camp fresh
+```
+
+![Recording of camp fresh: previewing cleanup, removing the merged homepage branch, then running the install and build steps saved in the setup screen.](docs/demos/cleanup.gif)
+
+[Watch the MP4](docs/demos/cleanup.mp4) · [Still image](docs/demos/cleaned.png)
+
+These recordings use a disposable demo project and a development build of Camp.
+They show the real TUI and commands. [Recording source](docs/demos/README.md).
 
 ## Install
 
-### Claude Code
+**Current availability:** this repository is private, so Git needs access to it.
+Until automatic linking ships in Festival, Fresh works only in repositories
+already linked to a camp (a Festival workspace).
+
+Install both skills, then select your coding agents when prompted:
 
 ```bash
+npx skills add https://github.com/Obedience-Corp/fresh --skill fresh fresh-configure -g
+```
+
+`-g` makes them available across your local repositories. Omit it for this project
+only. Open your project in the agent and use the prompt above. `/fresh` also works
+where the agent supports slash invocation.
+
+<details>
+<summary>Native Claude Code and Codex plugins</summary>
+
+In Claude Code:
+
+```text
 /plugin marketplace add Obedience-Corp/fresh
 /plugin install fresh@fresh
 ```
 
-### Codex
-
-Run these in your terminal:
+In your terminal for Codex:
 
 ```bash
 codex plugin marketplace add Obedience-Corp/fresh
 codex plugin add fresh@fresh
 ```
 
-### Cursor, Grok, OpenCode, and other skill-compatible agents
+Both plugins include `fresh` and `fresh-configure`. The Claude plugin also includes
+native output cards for supported Claude Code and Desktop Code versions. Codex
+can preview the captured output as HTML where the app supports it. Other agents
+show the command transcript. [Output support](docs/installation.md#visual-output-in-your-agent).
 
-Install through the [`skills`](https://github.com/vercel-labs/skills) CLI:
+</details>
 
-```bash
-npx skills add https://github.com/Obedience-Corp/fresh --skill fresh fresh-configure -g
-```
+Fresh uses the `camp fresh` command from [Festival](https://github.com/Obedience-Corp/festival).
+On first use, the skill installs Festival if needed, or explains how to update an
+existing install. That provides the `camp` command used in the recordings.
+It preserves developer-built binaries. Requires macOS or Linux (WSL2 on Windows),
+Bash, and Python 3. [Manual install and setup details](docs/installation.md).
 
-Select your agents when prompted. `-g` makes the skill available across your
-local repositories. Omit it to install into just the current project.
-Claude Code and Codex can also use this route instead of the plugin.
+When automatic linking is available, a new repo can be linked into
+`~/campaigns/festival`; Camp reports the link and how `camp project unlink` undoes it.
+With current releases, use an existing camp as described in the reference below.
 
-To select all five explicitly:
+## CLI reference
 
-```bash
-npx skills add https://github.com/Obedience-Corp/fresh --skill fresh fresh-configure -g \
-  --agent claude-code codex cursor grok opencode
-```
+The interactive setup above is the terminal entry point. These commands are also
+available for scripts, agents, or direct edits.
 
-The repository is currently private, so Git needs access to it. If you have
-already cloned it, replace the URL with the local clone's path.
-
-### Use it
-
-Open your project repository in your agent, then say **"Use the fresh skill;
-my PR merged."** You can also select it from the agent's skill picker or use
-`/fresh` where slash invocation is supported. Restart the agent if it has not
-picked up the new skill.
-
-The plugin includes `fresh` and `fresh-configure`. The commands above install both
-skills; use `fresh-configure` to manage what runs after cleanup.
-
-The `fresh` skill includes the Festival installer under `scripts/`. It
-runs it on invocation, so it works without a session-start hook. The Claude
-plugin also checks Festival at session start.
-
-### Manual installation
-
-Copy the entire `skills/fresh/` folder, including `scripts/` and `references/`,
-to one of these locations. Copy `skills/fresh-configure/` alongside it as
-`fresh-configure/`. The paths below are also the destinations used by `skills` 1.7.1:
-
-| Agent | Current project | All local projects |
-| --- | --- | --- |
-| Claude Code | `.claude/skills/fresh/` | `~/.claude/skills/fresh/` |
-| Codex | `.agents/skills/fresh/` | `~/.codex/skills/fresh/` |
-| Cursor | `.agents/skills/fresh/` | `~/.cursor/skills/fresh/` |
-| Grok | `.grok/skills/fresh/` | `~/.grok/skills/fresh/` |
-| OpenCode | `.agents/skills/fresh/` | `~/.config/opencode/skills/fresh/` |
-
-For other agents, use their supported `SKILL.md` directory. They need shell
-access to run Bash, Python 3, and `camp`. Remote agents need the skill and Festival in
-their own environment; a local global install does not install them remotely.
-
-References: [Codex plugin commands](https://learn.chatgpt.com/docs/developer-commands),
-[Cursor skills](https://cursor.com/docs/skills),
-[Grok skills](https://docs.x.ai/build/features/skills-plugins-marketplaces),
-and [skills CLI agent support](https://github.com/vercel-labs/skills#supported-agents).
-
-## What it does
-
-1. Shows you the plan first. Nothing changes until you have seen it.
-2. Switches to the default branch and brings it level with `origin`.
-3. Deletes local branches that already landed, squash merges included.
-4. Removes worktrees whose work already landed.
-5. Runs any follow-up commands you configured, in order.
-
-It will not touch uncommitted work. It stops and asks. It will not delete a
-branch whose changes are not on the default branch. It keeps the branch and
-says why.
-
-The git work is done by `camp fresh` from
-[Festival](https://github.com/Obedience-Corp/festival). That is a tested
-binary, not an agent improvising git commands.
-
-## Visual output in your agent
-
-Fresh captures the actual `camp fresh` output for both the preview and the run:
-checklist rows, branch names, kept work, follow-up logs, and failures.
-
-- **Claude Code plugin:** a Claude Mod renders a native output card in the terminal
-  and the Claude Desktop **Code** tab. Mods must be enabled; terminal support starts
-  at 2.1.287 and Desktop Code at 2.1.286. A skills-only install has no mod.
-- **Codex app:** the skill presents the captured HTML as a local artifact link,
-  opening an HTML preview where supported. Hosts with an inline HTML visualization
-  facility can show the same file in the conversation.
-- **Cursor, Grok, OpenCode, and other hosts:** the literal transcript remains
-  available, with the local HTML report as an optional view. If a native card or
-  HTML preview is unavailable, the skill displays the transcript as text.
-
-These are snapshots after each command finishes; shell output streams during the
-run. The renderer does not replace Camp's cleanup logic or run commands itself.
-Reports stay in a private temporary directory outside the repository. They contain
-command logs; share them only intentionally. Large visual displays are shortened
-with a notice and a complete `transcript.txt` alongside them.
-
-References: [Claude Mods surfaces and versions](https://code.claude.com/docs/en/plugins/mods/overview)
-and [app HTML previews](https://learn.chatgpt.com/docs/artifacts-viewer).
-
-## Configure what runs after cleanup
-
-Ask your agent: **"Use fresh-configure. After cleanup, install dependencies, build
-this project, and start its dev server."** The companion skill inspects the repo's
-existing commands and saves the requested workflow. Configuration alone does not
-run cleanup or execute those commands.
+<details>
+<summary>Manage follow-ups, project scope, branch settings, and one-run options</summary>
 
 You can manage the same settings directly with the CLI. Run these from a linked
 project and replace `my-project` with its registered name from:
@@ -148,7 +125,7 @@ If the repo is not linked yet, link it without running cleanup:
 camp project link /path/to/repo --campaign my-camp --yes --no-commit
 ```
 
-### Add and maintain commands
+### Add, edit, reorder, and remove
 
 For a project using npm, for example:
 
@@ -222,54 +199,12 @@ camp fresh configure set push_upstream --action inherit --project my-project
 `camp fresh configure set --help` before changing them. If your installed release
 lacks a subcommand above, update Festival through your existing installation method.
 
-## What happens on the first run
+</details>
 
-- **Festival's `camp` is installed if it is missing.** The release archive
-  comes from `Obedience-Corp/festival`, its checksum is verified, and `camp` and
-  `fest` go into `~/.local/bin`. If `camp` is installed but too old, it is
-  updated through the `festival` manager, or you are shown the command to
-  update it. A binary you built or installed yourself is never replaced.
-- **Your repository is linked into a `festival` camp** in your home directory
-  (`~/campaigns/festival` by default). `camp` prints one line saying so.
-- **`camp project unlink` reverses the link.** Linking adds one `.camp` marker
-  file to your repository and tells git to ignore it, so `git status` stays
-  clean. Unlinking removes it.
+<p align="center">
+  <img src="docs/images/hero.png" width="880" alt="Tangled branches draw into one clean line. Fresh: Your PR merged. Start clean.">
+</p>
 
-## Status
+[Development and tests](docs/development.md) · [Festival](https://github.com/Obedience-Corp/festival) · [Apache-2.0](LICENSE)
 
-This repository is private and still being built. Until the `camp` change that
-links an unlinked repository ships in a Festival release, `fresh` works only in
-repositories already linked to a camp. The plugin installs the latest release,
-so the skill works everywhere the day that release lands.
-
-## Notes
-
-- macOS and Linux. On Windows, use WSL2.
-- In a clone of this repository, both skills are exposed at `.claude/skills/`,
-  `.agents/skills/`, `.grok/skills/`, and `.opencode/skills/` through symlinks
-  to both skill folders. To install them elsewhere, use the commands above.
-  On Windows, Git needs
-  `core.symlinks=true` and Developer Mode to create them. If they do not work,
-  copy both skill folders into your agent's skill directory or use `skills add --copy`.
-- Rather not install anything? `npx -y -p @obedience-corp/festival camp fresh`
-  runs the same binary from npm's cache.
-- Tests: `bash tests/run.sh`. With Claude Code installed, also run
-  `claude plugin validate .` and `claude plugin test .` for the native Mod.
-
-For an optional check against real Camp/Fest builds, place Linux binaries named
-`camp` and `fest` in `/absolute/linux-binaries`, then run from this repo:
-
-```bash
-docker run --rm --mount type=bind,src="$PWD",dst=/fresh,readonly \
-  --mount type=bind,src=/absolute/linux-binaries,dst=/binaries,readonly \
-  alpine:3.21 sh -c 'apk add --no-cache bash git python3 && PATH=/binaries:$PATH bash /fresh/tests/camp.integration.sh'
-```
-
-The integration check refuses to run outside a fresh Docker container. It verifies
-configuration readback, preview without follow-up execution, merged-branch cleanup,
-command order, skip, failure, continue-on-error, and inheritance.
-
-`fresh` is one command from Festival. For planning and running larger work with
-agents, see [Festival](https://github.com/Obedience-Corp/festival).
-
-Apache-2.0. Built by [Obedience Corp](https://obediencecorp.com).
+Built by [Obedience Corp](https://obediencecorp.com).
