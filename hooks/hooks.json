@@ -1,5 +1,5 @@
 {
-  "description": "fresh: at session start, make sure Festival's camp CLI is installed and can run fresh. Installs or updates only when needed and never fails the session.",
+  "description": "fresh: ensure Festival at session start and display captured camp fresh output with Claude Mods.",
   "hooks": {
     "SessionStart": [
       {
@@ -12,5 +12,8 @@
         ]
       }
     ]
-  }
+  },
+  "modules": [
+    "./register.js"
+  ]
 }

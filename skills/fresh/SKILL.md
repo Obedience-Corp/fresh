@@ -3,7 +3,7 @@ name: fresh
 description: Start clean after a merged PR. Puts the repo on its default branch, level with the remote, and removes branches and worktrees that already landed (squash merges included). Use when someone says "/fresh", "my PR merged", "clean up my branches", or "start fresh".
 license: Apache-2.0
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   author: Obedience Corp
   hermes:
     tags:
@@ -25,9 +25,10 @@ as "Base directory for this skill"). Never guess it. Run `camp` from the user's 
 1. **Get `camp`.** Run `bash "<skill-dir>/scripts/ensure-festival.sh"`. It prints
    the path to `camp` on stdout; use that path below. It installs or updates
    Festival only if needed and says so on stderr. Tell the user what it said.
-2. **Preview.** `"<camp>" fresh --dry-run`. Show the plan unedited; stop if it fails.
-3. **Run.** `"<camp>" fresh`. Use `-b <branch>` in both commands if the user named what is next.
-4. **Report** what was deleted, what was kept and why, and any undo line.
+2. **Preview.** Follow [output.md](references/output.md) to capture `camp fresh --dry-run`. Show the plan unedited; stop if it fails.
+3. **Run.** Use the capture command for `camp fresh`, with the same requested flags.
+   Use `-b <branch>` in both commands if the user named what is next.
+4. **Report.** Display the captured visual, kept work, warnings, and any undo line.
 
 Done means: default branch synced with origin, merged work cleaned up, and on
 the requested next branch if one was given. Report anything `camp` kept.
