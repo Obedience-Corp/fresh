@@ -22,8 +22,9 @@ with unmerged work are kept.
 
 ## Install
 
-With current Festival releases, Fresh works only in repositories already linked
-to a camp (a Festival workspace). [Project setup](#cli-reference).
+No Festival setup needed. Fresh installs it on first use if missing. Previewing
+leaves an unlinked repo unlinked; running cleanup links it into a `festival`
+workspace and tells you how to undo the link.
 
 ### Claude Code
 
@@ -84,12 +85,10 @@ Select **fresh** in Codex's `/skills` picker, or type **`$fresh:fresh`** with th
 plugin installed. Fresh checks Festival, previews the cleanup, then runs it and
 shows the actual command output.
 
-<p align="center">
-  <img src="docs/demos/skill.gif" width="100%" alt="A real Codex session: selecting Fresh through /skills, invoking $fresh:fresh, previewing cleanup, removing the merged branch, and running the saved install and build commands.">
-</p>
+https://github.com/user-attachments/assets/673a8508-cce2-45af-9d5b-998e8cca9edd
 <p align="center">
   <sub>Select Fresh. Preview, cleanup, and your project commands.</sub><br>
-  <a href="docs/demos/skill.mp4">Watch video</a> · <a href="docs/demos/skill.png">View still</a>
+  <a href="docs/demos/skill.gif">Animated GIF</a> · <a href="docs/demos/skill.png">View still</a>
 </p>
 
 This is a real Codex CLI session using the installed plugin in a disposable repo.
@@ -105,12 +104,10 @@ settings from the same screen.
 camp fresh configure
 ```
 
-<p align="center">
-  <img src="docs/demos/configure.gif" width="100%" alt="The camp fresh configure TUI: adding npm ci and npm run build through the forms and saving both steps.">
-</p>
+https://github.com/user-attachments/assets/ebdb4d47-9e15-4b23-8f43-5f75d6b80c5d
 <p align="center">
   <sub>Add your commands. Save once. Run them after each cleanup.</sub><br>
-  <a href="docs/demos/configure.mp4">Watch video</a> · <a href="docs/demos/configured.png">View still</a>
+  <a href="docs/demos/configure.gif">Animated GIF</a> · <a href="docs/demos/configured.png">View still</a>
 </p>
 
 Use the arrow keys to navigate, **Enter** to edit, and **a** to add a command.
@@ -130,12 +127,10 @@ camp fresh --dry-run
 camp fresh
 ```
 
-<p align="center">
-  <img src="docs/demos/cleanup.gif" width="100%" alt="Camp fresh removes the merged homepage branch, then runs the install and build steps saved in the setup screen.">
-</p>
+https://github.com/user-attachments/assets/f02590b9-89dc-4d5e-b6c7-2b7587336431
 <p align="center">
   <sub>Merged branch removed. Dependencies installed. Build complete.</sub><br>
-  <a href="docs/demos/cleanup.mp4">Watch video</a> · <a href="docs/demos/cleaned.png">View still</a>
+  <a href="docs/demos/cleanup.gif">Animated GIF</a> · <a href="docs/demos/cleaned.png">View still</a>
 </p>
 
 Or ask your agent to use **fresh**:
@@ -157,9 +152,9 @@ not first-install recordings. [VHS tapes and reproduction steps](docs/demos/READ
 The interactive setup above is the terminal entry point. These commands are also
 available for scripts, agents, or direct edits.
 
-When automatic linking is available, a new repo can be linked into
-`~/campaigns/festival`; Camp reports the link and how `camp project unlink` undoes it.
-With current releases, use an existing camp as described below.
+Festival v0.3.21 and later can link a new repo into `~/campaigns/festival`.
+Camp reports the link and how `camp project unlink` undoes it. You can also link
+the repo to an existing camp yourself, as described below.
 
 <details>
 <summary>Manage follow-ups, project scope, branch settings, and one-run options</summary>

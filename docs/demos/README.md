@@ -33,9 +33,10 @@ It does not install or replace the host's Festival tools, or publish the recordi
 - [setup-fixture.sh](setup-fixture.sh): the isolated project and merged branch.
 - [record.sh](record.sh): capture, persisted-state checks, and still extraction.
 
-The GIFs play inline on GitHub and start near the result so static previews show
-the workflow or cleanup outcome. MP4s preserve the original sequence and provide
-playback controls when opened in a video viewer; the stills show the final saved
+The README uses GitHub-uploaded video attachments for inline players. Repository
+MP4 links open GitHub's file page, so do not use them as playback links. GIFs
+remain linked as animated alternatives and start near the result. MP4s preserve
+the original sequence; the stills show the final saved
 workflow and cleanup result. VHS's
 hidden sections enter the container and clear the terminal before recording the
 user-facing commands. The cleanup clip clears the preview before showing the run.
@@ -46,6 +47,25 @@ Recorded with VHS 0.11.0 and a development build of Camp from
 [Camp PR #746](https://github.com/Obedience-Corp/camp/pull/746) on 2026-10-13.
 The project is already linked to a camp before recording starts. The videos do
 not demonstrate a released automatic-linking flow or an agent installation.
+The separate [released first-use check](../development.md#check-first-use-from-a-released-festival-build)
+now verifies installation and automatic linking with Festival v0.3.21.
+
+## Publish replacement recordings to GitHub
+
+After re-recording, attach the three MP4 files to the documentation PR using
+GitHub's editor or a GitHub CLI version with `--attach` (verified with 2.102.0):
+
+```bash
+gh pr edit <pr-number> --attach docs/demos/skill.mp4 \
+  --attach docs/demos/configure.mp4 --attach docs/demos/cleanup.mp4
+```
+
+Copy each resulting `https://github.com/user-attachments/assets/...` URL into
+the matching README section on its own line, with blank lines around it. GitHub
+renders these as video players. Keep the GIF and still links alongside each one.
+Replacing a local MP4 does not update the uploaded attachment; upload the new
+file and replace its URL together. Confirm playback on GitHub before merging.
+See [GitHub video attachments](https://docs.github.com/en/github-cli/github-cli/attaching-files-with-github-cli#embedding-a-video).
 
 ## Record the skill in Codex
 
