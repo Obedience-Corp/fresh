@@ -2,61 +2,49 @@
 
 **Your PR merged. Start clean.**
 
-Fresh syncs your default branch and removes branches and worktrees whose changes
-already landed, including squash merges. Use it through Claude Code, Codex, Cursor,
-Grok, or OpenCode, or run `camp fresh` in your terminal.
+<p align="center">
+  <img src="docs/images/hero.png" width="100%" alt="Fresh. Your PR merged. Start clean. Tangled branches draw into one clean line.">
+</p>
+
+Fresh is an agent skill that syncs your default branch and removes branches and
+worktrees whose changes already landed, including squash merges. Run it through
+Claude Code, Codex, Cursor, Grok, or OpenCode, or use `camp fresh` in your terminal.
 
 You see the cleanup plan first. Uncommitted changes stop the run, and branches
 with unmerged work are kept.
 
-[Install](#install) · [Watch setup](#configure-your-workflow) · [CLI reference](#cli-reference)
-
-## Configure your workflow
-
-With Festival installed, open the setup screen from your project:
-
-```bash
-camp fresh configure
-```
-
-It opens on your project's settings. Add an install step, a build, a dev server,
-or your own commands. Change branch settings and reorder steps from the same screen.
-
-![Recording of camp fresh configure: opening the project workflow, adding npm ci and npm run build through the forms, and saving both steps.](docs/demos/configure.gif)
-
-Use the arrow keys to navigate, **Enter** to edit, and **a** to add a command.
-Changes are saved from the form; configuration does not run cleanup.
-[Watch the MP4](docs/demos/configure.mp4) · [Still image](docs/demos/configured.png)
-
-The companion `fresh-configure` skill can do this for you, too:
-
-> Use fresh-configure. After cleanup, install dependencies and build this project.
-
-## After your next merge
-
-Ask your coding agent:
-
-> Use the fresh skill. My PR merged.
-
-Or preview and run it in your terminal:
-
-```bash
-camp fresh --dry-run
-camp fresh
-```
-
-![Recording of camp fresh: previewing cleanup, removing the merged homepage branch, then running the install and build steps saved in the setup screen.](docs/demos/cleanup.gif)
-
-[Watch the MP4](docs/demos/cleanup.mp4) · [Still image](docs/demos/cleaned.png)
-
-These recordings use a disposable demo project and a development build of Camp.
-They show the real TUI and commands. [Recording source](docs/demos/README.md).
+<p align="center">
+  <a href="#install"><strong>Install Fresh</strong></a> &nbsp; · &nbsp;
+  <a href="#configure-your-workflow">Watch setup</a> &nbsp; · &nbsp;
+  <a href="#use-the-skill">Watch the skill</a> &nbsp; · &nbsp;
+  <a href="#cli-reference">CLI reference</a>
+</p>
 
 ## Install
 
 **Current availability:** this repository is private, so Git needs access to it.
 Until automatic linking ships in Festival, Fresh works only in repositories
 already linked to a camp (a Festival workspace).
+
+### Claude Code
+
+Run these inside Claude Code:
+
+```text
+/plugin marketplace add Obedience-Corp/fresh
+/plugin install fresh@fresh
+```
+
+### Codex
+
+Run these in your terminal:
+
+```bash
+codex plugin marketplace add Obedience-Corp/fresh
+codex plugin add fresh@fresh
+```
+
+### Cursor, Grok, OpenCode, and other agents
 
 Install both skills, then select your coding agents when prompted:
 
@@ -65,47 +53,101 @@ npx skills add https://github.com/Obedience-Corp/fresh --skill fresh fresh-confi
 ```
 
 `-g` makes them available across your local repositories. Omit it for this project
-only. Open your project in the agent and use the prompt above. `/fresh` also works
-where the agent supports slash invocation.
+only. Claude Code and Codex can also use this route.
 
-<details>
-<summary>Native Claude Code and Codex plugins</summary>
+Every install above includes **fresh** and **fresh-configure**. Open your project
+in the agent and ask:
 
-In Claude Code:
+> Use the fresh skill. My PR merged.
 
-```text
-/plugin marketplace add Obedience-Corp/fresh
-/plugin install fresh@fresh
-```
+`/fresh` also works where the agent supports slash invocation. On first use, the
+skill installs [Festival](https://github.com/Obedience-Corp/festival) if needed,
+providing the `camp` command used below. It preserves developer-built binaries.
+Requires macOS or Linux (WSL2 on Windows), Bash, and Python 3.
 
-In your terminal for Codex:
+[Manual installation](docs/installation.md) · [Visual output in Claude and Codex](docs/installation.md#visual-output-in-your-agent)
+
+## Use the skill
+
+Open your project in Codex and ask **“Use $fresh. My PR merged.”** Fresh checks
+Festival, previews the cleanup, then runs it and reports the result.
+
+<p align="center">
+  <img src="docs/demos/skill.gif" width="100%" alt="A real Codex session: the user invokes the Fresh skill, Codex shows the cleanup preview, then removes the merged branch and runs the saved install and build commands.">
+</p>
+<p align="center">
+  <sub>One prompt. Preview, cleanup, and your project commands.</sub><br>
+  <a href="docs/demos/skill.mp4">Watch video</a> · <a href="docs/demos/skill.png">View still</a>
+</p>
+
+This is a real Codex CLI session using the installed skill in a disposable repo.
+The steps below show the terminal setup and cleanup controls it uses.
+
+## Configure your workflow
+
+With Festival installed, open the setup screen from your project. Add an install
+step, a build, a dev server, or your own commands. Reorder steps and change branch
+settings from the same screen.
 
 ```bash
-codex plugin marketplace add Obedience-Corp/fresh
-codex plugin add fresh@fresh
+camp fresh configure
 ```
 
-Both plugins include `fresh` and `fresh-configure`. The Claude plugin also includes
-native output cards for supported Claude Code and Desktop Code versions. Codex
-can preview the captured output as HTML where the app supports it. Other agents
-show the command transcript. [Output support](docs/installation.md#visual-output-in-your-agent).
+<p align="center">
+  <img src="docs/demos/configure.gif" width="100%" alt="The camp fresh configure TUI: adding npm ci and npm run build through the forms and saving both steps.">
+</p>
+<p align="center">
+  <sub>Add your commands. Save once. Run them after each cleanup.</sub><br>
+  <a href="docs/demos/configure.mp4">Watch video</a> · <a href="docs/demos/configured.png">View still</a>
+</p>
+
+Use the arrow keys to navigate, **Enter** to edit, and **a** to add a command.
+Changes are saved from the form; configuration does not run cleanup.
+
+Or ask your agent to use the included **fresh-configure** skill:
+
+> Use fresh-configure. After cleanup, install dependencies and build this project.
+
+## After your next merge
+
+Preview what will change, then clean up. Your saved commands run after cleanup
+succeeds.
+
+```bash
+camp fresh --dry-run
+camp fresh
+```
+
+<p align="center">
+  <img src="docs/demos/cleanup.gif" width="100%" alt="Camp fresh removes the merged homepage branch, then runs the install and build steps saved in the setup screen.">
+</p>
+<p align="center">
+  <sub>Merged branch removed. Dependencies installed. Build complete.</sub><br>
+  <a href="docs/demos/cleanup.mp4">Watch video</a> · <a href="docs/demos/cleaned.png">View still</a>
+</p>
+
+Or ask your agent to use **fresh**:
+
+> Use the fresh skill. My PR merged.
+
+<details>
+<summary>About these recordings</summary>
+
+The skill recording runs Codex with the installed Fresh skill; the setup and
+cleanup recordings run Camp directly. All use disposable demo projects with
+Festival already present and a development build of Camp. These are usage demos,
+not first-install recordings. [VHS tapes and reproduction steps](docs/demos/README.md).
 
 </details>
-
-Fresh uses the `camp fresh` command from [Festival](https://github.com/Obedience-Corp/festival).
-On first use, the skill installs Festival if needed, or explains how to update an
-existing install. That provides the `camp` command used in the recordings.
-It preserves developer-built binaries. Requires macOS or Linux (WSL2 on Windows),
-Bash, and Python 3. [Manual install and setup details](docs/installation.md).
-
-When automatic linking is available, a new repo can be linked into
-`~/campaigns/festival`; Camp reports the link and how `camp project unlink` undoes it.
-With current releases, use an existing camp as described in the reference below.
 
 ## CLI reference
 
 The interactive setup above is the terminal entry point. These commands are also
 available for scripts, agents, or direct edits.
+
+When automatic linking is available, a new repo can be linked into
+`~/campaigns/festival`; Camp reports the link and how `camp project unlink` undoes it.
+With current releases, use an existing camp as described below.
 
 <details>
 <summary>Manage follow-ups, project scope, branch settings, and one-run options</summary>
@@ -201,10 +243,11 @@ lacks a subcommand above, update Festival through your existing installation met
 
 </details>
 
+---
+
 <p align="center">
-  <img src="docs/images/hero.png" width="880" alt="Tangled branches draw into one clean line. Fresh: Your PR merged. Start clean.">
+  <a href="docs/development.md">Development</a> ·
+  <a href="https://github.com/Obedience-Corp/festival">Festival</a> ·
+  <a href="LICENSE">Apache-2.0</a><br>
+  Built by <a href="https://obediencecorp.com">Obedience Corp</a>.
 </p>
-
-[Development and tests](docs/development.md) · [Festival](https://github.com/Obedience-Corp/festival) · [Apache-2.0](LICENSE)
-
-Built by [Obedience Corp](https://obediencecorp.com).
