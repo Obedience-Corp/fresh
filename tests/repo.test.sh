@@ -73,10 +73,12 @@ EOF
 fi
 
 echo "discovery symlinks"
-for link in .claude/skills/fresh .agents/skills/fresh .grok/skills/fresh .opencode/skills/fresh; do
-    check "$link is a symlink" test -L "$link"
-    check "$link resolves to skills/fresh" test "$(cd "$link" 2>/dev/null && pwd -P)" = "$ROOT/skills/fresh"
-    check "$link exposes SKILL.md" test -f "$link/SKILL.md"
+for skill in fresh fresh-configure; do
+  for link in .claude/skills/"$skill" .agents/skills/"$skill" .grok/skills/"$skill" .opencode/skills/"$skill"; do
+      check "$link is a symlink" test -L "$link"
+      check "$link resolves to skills/$skill" test "$(cd "$link" 2>/dev/null && pwd -P)" = "$ROOT/skills/$skill"
+      check "$link exposes SKILL.md" test -f "$link/SKILL.md"
+  done
 done
 check "no broken symlinks" test -z "$(find . -path ./.git -prune -o -type l ! -exec test -e {} \; -print)"
 
@@ -95,7 +97,7 @@ check "ensure script is executable" test -x skills/fresh/scripts/ensure-festival
 check "there is one copy of the ensure script" test "$(find . -path ./.git -prune -o -type f -name ensure-festival.sh -print | wc -l | tr -d ' ')" = "1"
 if command -v shellcheck >/dev/null 2>&1; then
     check "ensure script passes shellcheck" shellcheck skills/fresh/scripts/ensure-festival.sh
-    check "tests pass shellcheck" shellcheck -x tests/run.sh tests/repo.test.sh tests/ensure-festival.test.sh
+    check "tests pass shellcheck" shellcheck -x tests/run.sh tests/repo.test.sh tests/ensure-festival.test.sh tests/camp.integration.sh
 else
     echo "  skip  shellcheck is not installed"
 fi

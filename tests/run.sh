@@ -16,6 +16,10 @@ for suite in "$DIR/repo.test.sh" "$DIR/ensure-festival.test.sh"; do
     echo
 done
 
+if ! python3 "$DIR/output.test.py"; then
+    status=1
+fi
+
 if [ "$status" -eq 0 ]; then
     echo "all suites passed"
 else

@@ -1,6 +1,6 @@
 {
   "name": "fresh",
-  "description": "Your PR merged. Start clean. One agent skill, one outcome.",
+  "description": "Your PR merged. Start clean. Cleanup and project workflow configuration.",
   "owner": {
     "name": "Obedience Corp",
     "url": "https://obediencecorp.com"
@@ -9,7 +9,7 @@
     {
       "name": "fresh",
       "description": "Start clean after a merged PR: on the default branch, level with the remote, with the branches and worktrees that already landed gone.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": "./",
       "author": {
         "name": "Obedience Corp",

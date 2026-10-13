@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "fresh",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Start clean after a merged PR: on the default branch, level with the remote, with the branches and worktrees that already landed gone.",
   "author": {
     "name": "Obedience Corp",
