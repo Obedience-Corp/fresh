@@ -26,6 +26,31 @@ References: [Codex plugin commands](https://learn.chatgpt.com/docs/developer-com
 and [skills CLI agent support](https://github.com/vercel-labs/skills#supported-agents).
 
 
+## Invoke the installed skills
+
+| Installation | Cleanup | Configuration |
+| --- | --- | --- |
+| Codex plugin | `$fresh:fresh` | `$fresh:fresh-configure` |
+| Codex standalone skills (`npx skills add` or manual) | `$fresh` | `$fresh-configure` |
+| Claude Code | `/fresh` | `/fresh-configure` |
+
+In Codex CLI, `/skills` opens the picker: choose **List skills**, type `fresh`,
+select the skill, and send it. Plugin entries show **(fresh)** after the skill
+name. Selecting one inserts its full plugin-qualified name. Start a new Codex
+session after installation if it is not listed. In an app, use its skill picker
+to select the installed skill.
+
+Codex CLI 0.162.1 rejects `/fresh` as an unknown command. Plugins supply skills;
+they do not register arbitrary top-level slash commands. Use the native `$`
+mention or `/skills` picker. See [Codex skill invocation](https://learn.chatgpt.com/docs/build-skills#how-chatgpt-and-codex-use-skills).
+
+In Claude Code, `/fresh:fresh` and `/fresh:fresh-configure` select the plugin's
+skills explicitly if a different installed skill uses the same short name.
+See [Claude skill command names](https://code.claude.com/docs/en/skills#how-a-skill-gets-its-command-name).
+
+For other agents, select the installed skill using that agent's picker, or ask
+it to use **fresh** or **fresh-configure** by name.
+
 ## What happens on the first run
 
 Current releases require a repository already linked to a camp. Automatic linking

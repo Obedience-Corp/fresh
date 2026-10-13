@@ -39,9 +39,9 @@ docker exec "$FRESH_DEMO_CONTAINER" bash -c '
   ln -s /binaries/camp /usr/local/bin/camp
   ln -s /binaries/fest /usr/local/bin/fest
   bash /fresh/docs/demos/setup-fixture.sh
-  mkdir -p /root/.agents/skills
-  cp -R /fresh/skills/fresh /fresh/skills/fresh-configure /root/.agents/skills/
   printf "cli_auth_credentials_store = \"file\"\n[projects.\"/demo/site\"]\ntrust_level = \"trusted\"\n[notice]\nhide_full_access_warning = true\n" > /root/.codex/config.toml
+  codex plugin marketplace add /fresh --json
+  codex plugin add fresh@fresh --json
   cd /demo/site
   camp fresh configure add install --run "npm ci" --project site
   camp fresh configure add build --run "npm run build" --project site
@@ -52,4 +52,4 @@ docker exec -w /demo/site "$FRESH_DEMO_CONTAINER" python3 /fresh/docs/demos/veri
 cp "$recording_dir/skill-run.json" docs/demos/skill-run.json
 # Match the still to the useful GIF preview, before the transcript scroll.
 ffmpeg -y -loglevel error -i docs/demos/skill.gif -frames:v 1 docs/demos/skill.png
-echo 'Verified: Codex invoked Fresh, previewed, cleaned up, and completed the build.'
+echo 'Verified: Codex selected the Fresh plugin skill, previewed, cleaned up, and completed the build.'

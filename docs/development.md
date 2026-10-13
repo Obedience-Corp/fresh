@@ -24,6 +24,27 @@ The integration check refuses to run outside a fresh Docker container. It verifi
 configuration readback, preview without follow-up execution, merged-branch cleanup,
 command order, skip, failure, continue-on-error, and inheritance.
 
+## Check Codex integration
+
+With Codex CLI installed (verified with 0.162.1), run:
+
+```bash
+python3 tests/codex.integration.py
+```
+
+This creates a temporary Codex profile, installs the working-tree plugin, checks
+both skills through the real app-server discovery API, checks bundled resources,
+then removes the plugin and verifies its skills disappear. It needs no login or
+model turn and does not invoke Festival or cleanup. Your normal Codex plugin
+configuration is untouched. It is optional because the default suite needs no
+Codex installation.
+
+To check the README's Git marketplace route against the same skill sources on main:
+
+```bash
+FRESH_MARKETPLACE_SOURCE=Obedience-Corp/fresh python3 tests/codex.integration.py
+```
+
 ## Record the demos
 
 See [the VHS tapes and fixture](demos/README.md). Recordings run real Camp in a

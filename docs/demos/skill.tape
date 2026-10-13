@@ -18,7 +18,15 @@ Enter
 Wait+Screen /Ask Codex to do anything/
 Sleep 2s
 Show
-Type "Use $fresh. My PR merged."
+Type "/skills"
+Sleep 1s
+Enter
+Wait+Screen /List skills/
+Enter
+Type "fresh"
+Wait+Screen /fresh-configure/
+Sleep 2s
+Enter
 Sleep 1s
 Enter
 Wait+Screen /Fresh! Synced to main/

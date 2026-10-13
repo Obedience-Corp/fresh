@@ -29,7 +29,13 @@ for path in Path('/root/.codex/sessions').rglob('*.jsonl'):
     rows.extend(json.loads(line) for line in path.read_text().splitlines())
 items = [r['payload'] for r in rows if r.get('type') == 'response_item']
 calls = [p.get('input', '') for p in items if p.get('type') == 'custom_tool_call']
-assert any('SKILL.md' in s for s in calls), 'Agent must read the installed skill.'
+user_text = [c.get('text', '') for p in items if p.get('role') == 'user'
+             for c in p.get('content', [])]
+assert '$fresh:fresh' in user_text, 'Expected the native plugin skill selection.'
+assert any('<name>fresh:fresh</name>' in s and
+           '/plugins/cache/fresh/fresh/' in s and
+           'Preview first. Every time.' in s for s in user_text), \
+    'Codex must load the selected plugin skill instructions.'
 assert any('ensure-festival.sh' in s for s in calls), 'Agent must run the installer check.'
 captures = [s for s in calls if 'fresh-output.py' in s and 'python3' in s]
 assert len(captures) == 2
@@ -38,9 +44,10 @@ assert any(r.get('payload', {}).get('type') == 'task_complete' for r in rows)
 # Export only fixture output and the requested prompt. Never export raw session,
 # authentication, usage, account, or machine configuration data.
 print(json.dumps({
-    'prompt': 'Use $fresh. My PR merged.',
+    'prompt': '$fresh:fresh',
+    'invocation': '/skills -> List skills -> fresh (fresh) -> Enter -> submit',
     'codexVersion': subprocess.check_output(['codex', '--version'], text=True).strip(),
-    'checks': ['installed skill read', 'installer invoked', 'preview before cleanup',
+    'checks': ['native plugin skill selected and loaded', 'installer invoked', 'preview before cleanup',
                'merged branch removed', 'main synced', 'clean Git status', 'build output verified'],
     'preview': reports[0]['output'],
     'completed': reports[1]['output'],
