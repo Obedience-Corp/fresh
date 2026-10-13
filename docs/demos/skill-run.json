@@ -1,8 +1,9 @@
 {
-  "prompt": "Use $fresh. My PR merged.",
+  "prompt": "$fresh:fresh",
+  "invocation": "/skills -> List skills -> fresh (fresh) -> Enter -> submit",
   "codexVersion": "codex-cli 0.162.1",
   "checks": [
-    "installed skill read",
+    "native plugin skill selected and loaded",
     "installer invoked",
     "preview before cleanup",
     "merged branch removed",
@@ -11,5 +12,5 @@
     "build output verified"
   ],
   "preview": "  site (dry-run)\n\n  Sync \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n  \u00b7 Checkout main                   already on it\n  \u2713 Fetch origin                    done (remote refs only)\n  \u00b7 Sync main \u2190 origin/main         up-to-date\n\n  Prune \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n  \u00b7 Prune merged branches           would delete 1 branch\n    feat/homepage\n\n  Follow-ups preview only \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n  \u00b7 install                         would run\n    npm ci\n  \u00b7 build                           would run\n    npm run build\n\n  (dry-run \u2014 remote refs refreshed; no local branches or files changed)\n",
-  "completed": "  site\n\n  Sync \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n  \u00b7 Checkout main                   already on it\n  \u2713 Fetch origin                    done\n  \u00b7 Sync main \u2190 origin/main         up-to-date\n\n  Prune \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n  \u2713 Prune merged branches           deleted 1 branch\n    feat/homepage\n\n  Follow-ups (2) \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n    $ npm ci\n\nup to date, audited 1 package in 87ms\n\nfound 0 vulnerabilities\n  \u2713 install                         done\n    $ npm run build\n\n> fresh-demo-site@1.0.0 build\n> node build.js\n\nBuilt dist/index.html\n  \u2713 build                           done\n\n  Fresh! Synced to main.\n"
+  "completed": "  site\n\n  Sync \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n  \u00b7 Checkout main                   already on it\n  \u2713 Fetch origin                    done\n  \u00b7 Sync main \u2190 origin/main         up-to-date\n\n  Prune \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n  \u2713 Prune merged branches           deleted 1 branch\n    feat/homepage\n\n  Follow-ups (2) \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n    $ npm ci\n\nup to date, audited 1 package in 88ms\n\nfound 0 vulnerabilities\n  \u2713 install                         done\n    $ npm run build\n\n> fresh-demo-site@1.0.0 build\n> node build.js\n\nBuilt dist/index.html\n  \u2713 build                           done\n\n  Fresh! Synced to main.\n"
 }

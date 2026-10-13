@@ -22,9 +22,8 @@ with unmerged work are kept.
 
 ## Install
 
-**Current availability:** this repository is private, so Git needs access to it.
-Until automatic linking ships in Festival, Fresh works only in repositories
-already linked to a camp (a Festival workspace).
+With current Festival releases, Fresh works only in repositories already linked
+to a camp (a Festival workspace). [Project setup](#cli-reference).
 
 ### Claude Code
 
@@ -35,6 +34,9 @@ Run these inside Claude Code:
 /plugin install fresh@fresh
 ```
 
+Then open your project and run `/fresh`. Use `/fresh-configure` to save commands
+to run after cleanup.
+
 ### Codex
 
 Run these in your terminal:
@@ -43,6 +45,16 @@ Run these in your terminal:
 codex plugin marketplace add Obedience-Corp/fresh
 codex plugin add fresh@fresh
 ```
+
+Open Codex in your project. Type `/skills`, choose **List skills**, then select
+**fresh (fresh)** and send it. Or invoke the plugin skill directly:
+
+```text
+$fresh:fresh
+```
+
+Use `$fresh:fresh-configure` to configure your workflow. Codex uses `$` for skill
+mentions; `/fresh` is not a Codex command.
 
 ### Cursor, Grok, OpenCode, and other agents
 
@@ -60,8 +72,7 @@ in the agent and ask:
 
 > Use the fresh skill. My PR merged.
 
-`/fresh` also works where the agent supports slash invocation. On first use, the
-skill installs [Festival](https://github.com/Obedience-Corp/festival) if needed,
+On first use, the skill installs [Festival](https://github.com/Obedience-Corp/festival) if needed,
 providing the `camp` command used below. It preserves developer-built binaries.
 Requires macOS or Linux (WSL2 on Windows), Bash, and Python 3.
 
@@ -69,18 +80,19 @@ Requires macOS or Linux (WSL2 on Windows), Bash, and Python 3.
 
 ## Use the skill
 
-Open your project in Codex and ask **“Use $fresh. My PR merged.”** Fresh checks
-Festival, previews the cleanup, then runs it and reports the result.
+Select **fresh** in Codex's `/skills` picker, or type **`$fresh:fresh`** with the
+plugin installed. Fresh checks Festival, previews the cleanup, then runs it and
+shows the actual command output.
 
 <p align="center">
-  <img src="docs/demos/skill.gif" width="100%" alt="A real Codex session: the user invokes the Fresh skill, Codex shows the cleanup preview, then removes the merged branch and runs the saved install and build commands.">
+  <img src="docs/demos/skill.gif" width="100%" alt="A real Codex session: selecting Fresh through /skills, invoking $fresh:fresh, previewing cleanup, removing the merged branch, and running the saved install and build commands.">
 </p>
 <p align="center">
-  <sub>One prompt. Preview, cleanup, and your project commands.</sub><br>
+  <sub>Select Fresh. Preview, cleanup, and your project commands.</sub><br>
   <a href="docs/demos/skill.mp4">Watch video</a> · <a href="docs/demos/skill.png">View still</a>
 </p>
 
-This is a real Codex CLI session using the installed skill in a disposable repo.
+This is a real Codex CLI session using the installed plugin in a disposable repo.
 The steps below show the terminal setup and cleanup controls it uses.
 
 ## Configure your workflow
