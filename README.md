@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="docs/images/hero.png" width="880" alt="fresh. Your PR merged. Start clean. Example branches feat/login, fix/navbar, wip/rebase, and chore/deps are crossed out. main is level with origin.">
+  <img src="docs/images/hero.png" width="880" alt="fresh. Tangled branches draw into one clean line. Your PR merged. Start clean. Merged branches and worktrees are gone. You are on the default branch, level with origin.">
 </p>
-<p align="center"><em>An example. The branch names are made up.</em></p>
 
 # fresh
 
