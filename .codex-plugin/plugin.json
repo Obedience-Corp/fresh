@@ -1,0 +1,27 @@
+{
+  "name": "fresh",
+  "version": "0.1.0",
+  "description": "Start clean after a merged PR: on the default branch, level with the remote, with the branches and worktrees that already landed gone.",
+  "author": {
+    "name": "Obedience Corp",
+    "url": "https://obediencecorp.com"
+  },
+  "homepage": "https://github.com/Obedience-Corp/fresh",
+  "repository": "https://github.com/Obedience-Corp/fresh",
+  "license": "Apache-2.0",
+  "keywords": ["git", "branches", "worktrees", "cleanup", "camp", "festival", "skill"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "fresh",
+    "shortDescription": "Start clean after a merged PR.",
+    "longDescription": "After a pull request merges, put the repository on its default branch, level with the remote, and remove the branches and worktrees that already landed, squash merges included. It previews first and never touches uncommitted work.",
+    "developerName": "Obedience Corp",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write", "Execute"],
+    "defaultPrompt": [
+      "My PR merged. Start clean.",
+      "Clean up the branches that already landed.",
+      "Start fresh on the default branch."
+    ]
+  }
+}

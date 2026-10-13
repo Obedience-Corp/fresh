@@ -1,0 +1,10 @@
+fresh
+Copyright 2026 Obedience Corp
+
+This product includes software adapted from Festival
+(https://github.com/Obedience-Corp/festival), Copyright 2026 Obedience Corp,
+licensed under the Apache License, Version 2.0.
+
+  skills/fresh/scripts/ensure-festival.sh adapts the release download,
+  checksum verification, and install steps from
+  claude-plugin/hooks/scripts/ensure-festival.sh.

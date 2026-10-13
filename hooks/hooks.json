@@ -1,0 +1,16 @@
+{
+  "description": "fresh: at session start, make sure Festival's camp CLI is installed and can run fresh. Installs or updates only when needed and never fails the session.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/skills/fresh/scripts/ensure-festival.sh\" --hook",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}
