@@ -33,11 +33,11 @@ It does not install or replace the host's Festival tools, or publish the recordi
 - [setup-fixture.sh](setup-fixture.sh): the isolated project and merged branch.
 - [record.sh](record.sh): capture, persisted-state checks, and still extraction.
 
-The README uses GitHub-uploaded video attachments for inline players. Repository
-MP4 links open GitHub's file page, so do not use them as playback links. GIFs
-remain linked as animated alternatives and start near the result. MP4s preserve
-the original sequence; the stills show the final saved
-workflow and cleanup result. VHS's
+The README shows GIFs inline so the demos play immediately. They start near the
+result. Its **Watch video** links open the [video page](videos.md), which uses
+GitHub-uploaded MP4 attachments with playback controls. Repository MP4 links
+open GitHub's file page, so do not use them as playback links. MP4s preserve the
+original sequence; stills show the saved workflow and cleanup result. VHS's
 hidden sections enter the container and clear the terminal before recording the
 user-facing commands. The cleanup clip clears the preview before showing the run.
 
@@ -61,8 +61,9 @@ gh pr edit <pr-number> --attach docs/demos/skill.mp4 \
 ```
 
 Copy each resulting `https://github.com/user-attachments/assets/...` URL into
-the matching README section on its own line, with blank lines around it. GitHub
-renders these as video players. Keep the GIF and still links alongside each one.
+the matching section in [videos.md](videos.md) on its own line, with blank lines
+around it. GitHub renders these as video players. Keep GIFs inline in the main
+README, with **Watch video** links to the matching video-page headings.
 Replacing a local MP4 does not update the uploaded attachment; upload the new
 file and replace its URL together. Confirm playback on GitHub before merging.
 See [GitHub video attachments](https://docs.github.com/en/github-cli/github-cli/attaching-files-with-github-cli#embedding-a-video).

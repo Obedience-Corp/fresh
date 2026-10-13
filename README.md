@@ -85,10 +85,12 @@ Select **fresh** in Codex's `/skills` picker, or type **`$fresh:fresh`** with th
 plugin installed. Fresh checks Festival, previews the cleanup, then runs it and
 shows the actual command output.
 
-https://github.com/user-attachments/assets/673a8508-cce2-45af-9d5b-998e8cca9edd
+<p align="center">
+  <img src="docs/demos/skill.gif" width="100%" alt="Selecting Fresh in Codex, previewing cleanup, removing the merged branch, and running the saved install and build commands.">
+</p>
 <p align="center">
   <sub>Select Fresh. Preview, cleanup, and your project commands.</sub><br>
-  <a href="docs/demos/skill.gif">Animated GIF</a> · <a href="docs/demos/skill.png">View still</a>
+  <a href="docs/demos/videos.md#fresh-in-codex">Watch video</a> · <a href="docs/demos/skill.png">View still</a>
 </p>
 
 This is a real Codex CLI session using the installed plugin in a disposable repo.
@@ -104,10 +106,12 @@ settings from the same screen.
 camp fresh configure
 ```
 
-https://github.com/user-attachments/assets/ebdb4d47-9e15-4b23-8f43-5f75d6b80c5d
+<p align="center">
+  <img src="docs/demos/configure.gif" width="100%" alt="The camp fresh configure TUI: adding npm ci and npm run build through the forms and saving both steps.">
+</p>
 <p align="center">
   <sub>Add your commands. Save once. Run them after each cleanup.</sub><br>
-  <a href="docs/demos/configure.gif">Animated GIF</a> · <a href="docs/demos/configured.png">View still</a>
+  <a href="docs/demos/videos.md#interactive-setup">Watch video</a> · <a href="docs/demos/configured.png">View still</a>
 </p>
 
 Use the arrow keys to navigate, **Enter** to edit, and **a** to add a command.
@@ -127,10 +131,12 @@ camp fresh --dry-run
 camp fresh
 ```
 
-https://github.com/user-attachments/assets/f02590b9-89dc-4d5e-b6c7-2b7587336431
+<p align="center">
+  <img src="docs/demos/cleanup.gif" width="100%" alt="Camp fresh removes a merged branch, then runs the saved install and build steps.">
+</p>
 <p align="center">
   <sub>Merged branch removed. Dependencies installed. Build complete.</sub><br>
-  <a href="docs/demos/cleanup.gif">Animated GIF</a> · <a href="docs/demos/cleaned.png">View still</a>
+  <a href="docs/demos/videos.md#cleanup-and-follow-ups">Watch video</a> · <a href="docs/demos/cleaned.png">View still</a>
 </p>
 
 Or ask your agent to use **fresh**:
