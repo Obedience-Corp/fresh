@@ -53,8 +53,9 @@ it to use **fresh** or **fresh-configure** by name.
 
 ## What happens on the first run
 
-Current releases require a repository already linked to a camp. Automatic linking
-below describes the upcoming auto-link capable Camp release.
+Automatic linking is included in [Festival v0.3.21](https://github.com/Obedience-Corp/festival/releases/tag/v0.3.21)
+with Camp v0.15.0. Previewing an unlinked repository does not create a camp or
+link the repository; the link is created when you run cleanup.
 
 - **Festival's `camp` is installed if it is missing.** The release archive
   comes from `Obedience-Corp/festival`, its checksum is verified, and `camp` and
@@ -117,5 +118,6 @@ npx -y -p @obedience-corp/festival camp fresh --dry-run
 npx -y -p @obedience-corp/festival camp fresh
 ```
 
-Review the preview before running cleanup. The current linked-repository requirement
-also applies to the released CLI.
+Review the preview before running cleanup. If an older developer-built Camp cannot
+link an unlinked repository, update it through your existing installation method
+or link the repository to a camp first. Fresh does not replace your developer build.

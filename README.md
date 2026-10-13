@@ -22,8 +22,9 @@ with unmerged work are kept.
 
 ## Install
 
-With current Festival releases, Fresh works only in repositories already linked
-to a camp (a Festival workspace). [Project setup](#cli-reference).
+No Festival setup needed. Fresh installs it on first use if missing. Previewing
+leaves an unlinked repo unlinked; running cleanup links it into a `festival`
+workspace and tells you how to undo the link.
 
 ### Claude Code
 
@@ -157,9 +158,9 @@ not first-install recordings. [VHS tapes and reproduction steps](docs/demos/READ
 The interactive setup above is the terminal entry point. These commands are also
 available for scripts, agents, or direct edits.
 
-When automatic linking is available, a new repo can be linked into
-`~/campaigns/festival`; Camp reports the link and how `camp project unlink` undoes it.
-With current releases, use an existing camp as described below.
+Festival v0.3.21 and later can link a new repo into `~/campaigns/festival`.
+Camp reports the link and how `camp project unlink` undoes it. You can also link
+the repo to an existing camp yourself, as described below.
 
 <details>
 <summary>Manage follow-ups, project scope, branch settings, and one-run options</summary>

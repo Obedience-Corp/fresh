@@ -106,7 +106,6 @@ echo "copy"
 check "no em dash anywhere" test -z "$(grep -rn "$(printf '\342\200\224')" . --exclude-dir=.git)"
 check "README states the install lines" grep -q "/plugin install fresh@fresh" README.md
 check "README states the skills install line" grep -q "npx skills add https://github.com/Obedience-Corp/fresh --skill fresh" README.md
-check "README states the status plainly" grep -q "works only in" README.md
 check "README names the undo" grep -q "camp project unlink" README.md
 check "LICENSE is Apache-2.0" grep -q "Apache License" LICENSE
 check "NOTICE credits Festival" grep -q "Obedience-Corp/festival" NOTICE
