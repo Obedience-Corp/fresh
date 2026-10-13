@@ -50,5 +50,6 @@ docker exec "$FRESH_DEMO_CONTAINER" bash -c '
 vhs docs/demos/skill.tape
 docker exec -w /demo/site "$FRESH_DEMO_CONTAINER" python3 /fresh/docs/demos/verify-skill.py > "$recording_dir/skill-run.json"
 cp "$recording_dir/skill-run.json" docs/demos/skill-run.json
-ffmpeg -y -loglevel error -sseof -0.3 -i docs/demos/skill.mp4 -frames:v 1 docs/demos/skill.png
+# Match the still to the useful GIF preview, before the transcript scroll.
+ffmpeg -y -loglevel error -i docs/demos/skill.gif -frames:v 1 docs/demos/skill.png
 echo 'Verified: Codex invoked Fresh, previewed, cleaned up, and completed the build.'
