@@ -73,7 +73,7 @@ EOF
 fi
 
 echo "discovery symlinks"
-for link in .claude/skills/fresh .agents/skills/fresh .opencode/skills/fresh; do
+for link in .claude/skills/fresh .agents/skills/fresh .grok/skills/fresh .opencode/skills/fresh; do
     check "$link is a symlink" test -L "$link"
     check "$link resolves to skills/fresh" test "$(cd "$link" 2>/dev/null && pwd -P)" = "$ROOT/skills/fresh"
     check "$link exposes SKILL.md" test -f "$link/SKILL.md"

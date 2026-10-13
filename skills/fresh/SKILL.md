@@ -20,7 +20,7 @@ metadata:
 Your PR merged. Start clean.
 
 `<skill-dir>` is the directory containing this `SKILL.md` (Claude Code prints it
-as "Base directory for this skill"). Never guess an install path.
+as "Base directory for this skill"). Never guess it. Run `camp` from the user's project repo.
 
 1. **Get `camp`.** Run `bash "<skill-dir>/scripts/ensure-festival.sh"`. It prints
    the path to `camp` on stdout; use that path below. It installs or updates
