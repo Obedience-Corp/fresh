@@ -22,10 +22,6 @@ with unmerged work are kept.
 
 ## Install
 
-No Festival setup needed. Fresh installs it on first use if missing. Previewing
-leaves an unlinked repo unlinked; running cleanup links it into a `festival`
-workspace and tells you how to undo the link.
-
 ### Claude Code
 
 Run these inside Claude Code:
